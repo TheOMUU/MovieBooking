@@ -24,6 +24,10 @@ public class UserService {
         return userRepository.findById(id)
                 .orElseThrow(()-> new UserNotFound("User Not Found"));
     }
+    //get user by its name
+    public List<User> getAllUserByName(String name){
+        return userRepository.findUserByName(name);
+    }
     //create new users
     public User createUser(User user){
         return userRepository.save(user);

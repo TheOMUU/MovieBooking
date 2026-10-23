@@ -24,6 +24,11 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+    @GetMapping(value = "/users", params = "name")
+    public List<User> findUserByName (@RequestParam String name){
+        return userService.getAllUserByName(name);
+    }
+
     @PostMapping("/users")
     public User createUser(@RequestBody User user){
         return userService.createUser(user);
@@ -38,4 +43,5 @@ public class UserController {
     public void deleteUserById(@PathVariable Long id){
         userService.deleteUser(id);
     }
+
 }
