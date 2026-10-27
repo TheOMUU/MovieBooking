@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable Long id){
+    public User getUserById (@PathVariable Long id){
         return userService.getUserById(id);
     }
 
@@ -29,18 +29,33 @@ public class UserController {
         return userService.getAllUserByName(name);
     }
 
+    @GetMapping(value = "/users", params = {"name", "age"})
+    public List<User> findUserByNameAndAge(@RequestParam String name, @RequestParam Integer age){
+        return userService.getUserByNameAndAge(name, age);
+    }
+
+    @GetMapping(value = "/users", params = {"minAge", "maxAge"})
+    public List<User> findUserRange(@RequestParam Integer minAge, @RequestParam Integer maxAge){
+        return userService.findUserAgeRange(minAge, maxAge);
+    }
+
+    @GetMapping(value = {"/users"}, params = "minAge")
+    public List<User> findSortedUser(@RequestParam Integer minAge){
+        return  userService.findSortedUser(minAge);
+    }
+
     @PostMapping("/users")
-    public User createUser(@RequestBody User user){
+    public User createUser (@RequestBody User user){
         return userService.createUser(user);
     }
 
     @PutMapping("/users")
-    public User updateUser(@PathVariable Long id, @RequestBody User user){
+    public User updateUser (@PathVariable Long id, @RequestBody User user){
         return userService.updateUser(id, user);
     }
 
     @DeleteMapping("/users/{id}")
-    public void deleteUserById(@PathVariable Long id){
+    public void deleteUserById (@PathVariable Long id){
         userService.deleteUser(id);
     }
 

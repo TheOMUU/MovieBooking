@@ -28,6 +28,17 @@ public class UserService {
     public List<User> getAllUserByName(String name){
         return userRepository.findUserByName(name);
     }
+    //get user by its name and age
+    public List<User> getUserByNameAndAge(String name, Integer age){
+        return userRepository.findUserByNameAndAge(name, age);
+    }
+    //get user age by its range
+    public List<User> findUserAgeRange(Integer minAge, Integer maxAge){
+        return userRepository.findUserAgeRange(minAge, maxAge);
+    }
+    public List<User> findSortedUser(Integer minAge){
+        return userRepository.findSortedUser(minAge);
+    }
     //create new users
     public User createUser(User user){
         return userRepository.save(user);
@@ -37,7 +48,6 @@ public class UserService {
         User existingUser = userRepository.findById(id).orElseThrow(()-> new UserNotFound("User not found"));
         existingUser.setName(updatedUser.getName());
         existingUser.setAge(updatedUser.getAge());
-
         return userRepository.save(existingUser);
     }
 
