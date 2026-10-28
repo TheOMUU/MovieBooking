@@ -17,5 +17,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findUserAgeRange(@Param("minAge") Integer minAge, @Param("maxAge") Integer maxAge);
     @Query("SELECT u FROM User u WHERE u.age >= :minAge ORDER BY u.age DESC")
     List<User> findSortedUser(@Param("minAge") Integer minAge);
+    @Query("SELECT u FROM User u WHERE u.age IN :ages")
+    List<User> findUserAgeIn(@Param("ages") List<Integer> ages);
 
 }

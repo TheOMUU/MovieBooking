@@ -36,9 +36,16 @@ public class UserService {
     public List<User> findUserAgeRange(Integer minAge, Integer maxAge){
         return userRepository.findUserAgeRange(minAge, maxAge);
     }
+    //sorting user in descending order
     public List<User> findSortedUser(Integer minAge){
         return userRepository.findSortedUser(minAge);
     }
+
+    //Using IN Operator in JPQL
+    public List<User> findUserInAge(List<Integer> ages){
+        return userRepository.findUserAgeIn(ages);
+    }
+
     //create new users
     public User createUser(User user){
         return userRepository.save(user);

@@ -44,6 +44,11 @@ public class UserController {
         return  userService.findSortedUser(minAge);
     }
 
+    @GetMapping(value = {"/users"}, params = {"ages"})
+    List<User> findUserInOperator(@RequestParam List<Integer> ages){
+        return userService.findUserInAge(ages);
+    }
+
     @PostMapping("/users")
     public User createUser (@RequestBody User user){
         return userService.createUser(user);
